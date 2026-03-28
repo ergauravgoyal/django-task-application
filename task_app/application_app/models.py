@@ -23,6 +23,7 @@ class Application(models.Model):
     applicant_status = models.CharField(
         max_length=50, choices=STATUS_CHOICES, default="applied"
     )
+    is_deleted = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

@@ -65,5 +65,13 @@ class ApplicationViewSet(viewsets.ViewSet):
 # This is the most efficient way to handle CRUD. DRF handles all logic
 # (GET, POST, PUT, DELETE) automatically using the queryset and serializer.
 class ApplicationViewSet(viewsets.ModelViewSet):
-    queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
+
+    def get_queryset(self):
+        # Only return records that are NOT soft-deleted
+        return Application.objects.filter(is_deleted=False)
+
+    def perform_destroy(self, instance):
+        # Soft delete: mark as deleted instead of removing from DB
+        instance.is_deleted = True
+        instance.save()

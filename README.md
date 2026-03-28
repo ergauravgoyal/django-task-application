@@ -123,13 +123,13 @@ We improved the project structure by nesting apps:
 - **Users**:
   - `POST /user/add/`: Create a user.
   - `GET /user/get/`: List all users.
-- **Jobs** (ViewSets):
-  - `GET /jobs/`: List all jobs.
-  - `POST /jobs/`: Create a new job. (`id` and `created_at` are auto-generated).
-  - `GET /jobs/<id>/`: Retrieve a specific job.
-  - `PUT /jobs/<id>/`: Update a specific job (Full).
-  - `PATCH /jobs/<id>/`: Update a specific job (Partial).
-  - `DELETE /jobs/<id>/`: Delete a specific job.
+- **Applications** (ViewSets):
+  - `GET /application/`: List all applications.
+  - `POST /application/`: Create a new application.
+  - `GET /application/<id>/`: Retrieve a specific application by ID.
+  - `PUT /application/<id>/`: Update a specific application (Full).
+  - `PATCH /application/<id>/`: Update a specific application (Partial).
+  - `DELETE /application/<id>/`: Delete a specific application.
 
 ---
 *Created as part of the Task Management Backend Project.*

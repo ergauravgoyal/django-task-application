@@ -166,9 +166,17 @@ class ApplicationViewSet(viewsets.ModelViewSet):
     serializer_class = ApplicationSerializer
 ```
 
----
+#### 4. Method-Based Routing
 
-### 2. Middleware
+In the `urls.py` of our projects app:
+
+```python
+router = DefaultRouter()
+router.register(r'', views.ProjectViewSet, basename='project')
+urlpatterns = router.urls
+```
+
+### 5. Middleware
 
 - **What it is**: Global interceptor for every request.
 - **Example**: Our `RequestLoggingMiddleware` for tracking performance.
@@ -228,6 +236,27 @@ Django is "Secure by Default". Here is how it handles the "Big Three" attacks:
 - **`Error: That port is already in use.`**: This means another server (or a stray process) is already running on port 8000. 
   - **Quick Fix**: Run `fuser -k 8000/tcp` to kill the process, or use a different port: `python manage.py runserver 8001`.
 - **`OperationalError: Port expected integer`**: Usually a space or newline missing in your `.env` file!
+
+---
+
+## 🛡️ Phase 6: Soft Deletion (Data Integrity)
+
+In production, we rarely "Hard Delete" (erase) data. Instead, we use **Soft Deletion**.
+
+### 1. Hard Delete vs Soft Delete
+
+| Feature | Hard Delete | Soft Delete (Logical Delete) |
+| :--- | :--- | :--- |
+| **Action** | `DELETE FROM table WHERE id=X` | `UPDATE table SET is_deleted=True WHERE id=X` |
+| **Recovery** | Impossible (unless you have backups) | Instant (just set `is_deleted=False`) |
+| **Auditing** | Data is gone forever. | You keep a record of who deleted what and when. |
+
+### 2. Implementation in DRF
+
+To implement this professionally in a `ModelViewSet`, we override two things:
+
+1.  **`get_queryset()`**: To filter out deleted records from all `GET` requests.
+2.  **`perform_destroy()`**: To change the `DELETE` action from "erase" to "mark as deleted".
 
 ---
 
