@@ -1,0 +1,85 @@
+
+
+
+user can rate a movie from 0 to 10
+Fetch Rating for any movie
+User want to list all the movies he has rated
+
+
+1) Rate movie
+
+method POST -->  localhost:3000/api/ratings/
+
+
+Bearer token
+
+
+Body
+
+{
+    movieId:number
+    rating: number
+}
+
+
+Response {ratingId:number}
+Status Code 201 
+
+
+
+
+localhost:3000/api/ratings/ POST  (Create a rating)
+localhost:3000/api/ratings/  GET (1 rating)
+localhost:3000/api/ratings/?id=10 GET (optional)
+localhost:3000/api/ratings/10/  GET (mandatory)
+localhost:3000/api/ratings/  PUT
+localhost:3000/api/ratings/ DELETE
+
+
+Best practices for REST API
+
+
+Fetch Rating for any movie
+
+
+GET localhost:3000/api/movie/?name=
+
+Body
+
+{
+    movie:10
+    rating:5
+}
+
+
+User want to list all the movies he has rated
+
+localhost:3000/api/user/ 
+
+
+Bearer Token -> 
+
+
+REST API everything is modeled based on resources
+
+
+
+
+User  Rating movie
+
+
+U1  9  M1(5)
+
+
+
+
+
+M1 U1 -9
+   U2  8
+   U3  10
+
+
+   REST Endpoint and cnventions should be correct
+   Handle Scalability
+   How are we going to store in DB
+

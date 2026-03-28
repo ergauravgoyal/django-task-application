@@ -1,0 +1,32 @@
+# Environment
+.venv
+.env
+.env.*
+.python-version
+
+# Python
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Django
+db.sqlite3
+staticfiles/
+media/
+*.log
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project specific
+uv.lock
+# Note: uv.lock is usually committed for apps, but you can ignore it if you prefer.
+# For this project, I'll keep it as a suggestion.
